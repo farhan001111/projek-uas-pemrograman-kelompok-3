@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 
-void lihatAlat() {
+oid lihatAlat() {
     FILE *f = fopen("items.txt", "r");
     char line[200];
 
@@ -10,7 +10,7 @@ void lihatAlat() {
         return;
     }
 
-    printf("\n=== DAFTAR ALAT LAB ===\n");
+    printf("\n=== DAFTAR ALAT ===\n");
     while (fgets(line, sizeof(line), f)) {
         printf("%s", line);
     }
@@ -18,15 +18,27 @@ void lihatAlat() {
     fclose(f);
 }
 
-void pinjamAlat(char user[]) {
-    FILE *f = fopen("loans.txt", "a");
-    char id[20];
+void tambahAlat() {
+    FILE *f = fopen("items.txt", "a");
 
-    printf("Masukkan ID alat yang mau dipinjam: ");
+    char id[20], nama[50], merk[50], model[50];
+    int tahun, jumlah;
+
+    printf("ID alat   : ");
     scanf("%s", id);
+    printf("Nama alat : ");
+    scanf("%s", nama);
+    printf("Merek     : ");
+    scanf("%s", merk);
+    printf("Model     : ");
+    scanf("%s", model);
+    printf("Tahun     : ");
+    scanf("%d", &tahun);
+    printf("Jumlah    : ");
+    scanf("%d", &jumlah);
 
-    fprintf(f, "%s %s\n", user, id);
+    fprintf(f, "%s %s %s %s %d %d\n", id, nama, merk, model, tahun, jumlah);
     fclose(f);
 
-    printf("Peminjaman berhasil!\n");
+    printf("Alat berhasil ditambahkan!\n");
 }
